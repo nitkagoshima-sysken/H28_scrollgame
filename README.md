@@ -1,5 +1,3 @@
-# H28_scrollgame
-making game
 # 平成28年度　ゲーム開発
 
 ## 1.実装機能＜Implementation Features＞
