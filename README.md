@@ -17,7 +17,7 @@
 + Java
 
 ### OS＜Operating System＞
-+ windows7
++ Windows7
 + Windows10
 
 ### エディタ＜Editor＞
