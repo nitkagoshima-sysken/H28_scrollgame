@@ -9,3 +9,5 @@ Not Finish/留年通知書
 
 追加政策事項
 Not Finish/ランキングの背景
+
+MergeTest　by　Shell
