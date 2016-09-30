@@ -1,4 +1,4 @@
-製作素材リスト
+﻿製作素材リスト
 必須製作事項
 Not Finish/学科選択用の教室
 Not Finish/学科選択説明用の黒板
@@ -10,7 +10,4 @@ Not Finish/留年通知書
 追加政策事項
 Not Finish/ランキングの背景
 
-
-
-
-Marge TestB
+MergeTest
