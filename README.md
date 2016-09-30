@@ -10,6 +10,8 @@
 >>> Not Clear / ゲーム概要画面表示（00秒経過後　＜PlayerNameFrame＞　へ）
 >>
 >> Not Clear / ランキング表示ボタン
+>>
+>>> Not Clear / ランキング画面表示
 >
 > Not Clear / 名前入力画面＜PlayerNameFrame＞
 >
