@@ -1,27 +1,17 @@
 # 平成28年度　ゲーム開発
 
 ## 1.実装機能＜Implementation Features＞
-> Not Clear / ゲームタイトル画面＜StartFrame＞
->
->> Not Clear / タイトル表示
->>
->> Not Clear / ゲームスタートボタン
->>
->>> Not Clear / ゲーム概要画面表示（00秒経過後　＜PlayerNameFrame＞　へ）
->>
->> Not Clear / ランキング表示ボタン
->>
->>> Not Clear / ランキング画面表示
->
-> Not Clear / 名前入力画面＜PlayerNameFrame＞
->
->> Not Clear / 名前入力の説明文
->>
->> Not Clear / 名前入力のテキストフィールドの実装
->>
->> Not Clear / 決定ボタンの実装（＜DepartmentChoiceFrame＞　へ）
->
-> Not Clear / Undecided
+- [ ] ゲームタイトル画面＜StartFrame＞
+  - [ ] タイトル表示
+  - [ ] ゲームスタートボタン
+    - [ ] ゲーム概要画面表示（00秒経過後　＜PlayerNameFrame＞　へ）
+  - [ ] ランキング表示ボタン
+    - [ ] ランキング画面表示
+- [ ] 名前入力画面＜PlayerNameFrame＞
+  - [ ] 名前入力の説明文
+　- [ ] 名前入力のテキストフィールドの実装
+  - [ ] 決定ボタンの実装（＜DepartmentChoiceFrame＞　へ）
+- [ ] Undecided
 
 ***
 
