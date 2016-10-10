@@ -15,9 +15,9 @@
 - [x] 名前入力画面＜PlayerNameFrame＞
   - [x] 名前入力の説明文
   - [x] 名前入力のテキストフィールド
-    -[x] 名前の取得＜（PlayerNameFrame.）name＞
+    - [ ] 名前の取得＜（PlayerNameFrame.）name＞
   - [x] 決定ボタン
-    - [x] 学科選択画面表示（＜DepartmentFrame＞　へ）
+    - [ ] 学科選択画面表示（＜DepartmentFrame＞　へ）
 - [x] 学科選択画面＜DepartmentFramae＞
   - [ ] 学科選択用イラストの表示
   - [ ] 選択用の説明表示
@@ -25,9 +25,9 @@
     - [ ] 電気電子工学科の説明表示
     - [ ] 制御工学科の説明表示
     - [ ] 情報工学科の説明表示
-    - [ ] 都市環境デザイン工学科の説明表示
-  - [ ] 決定ボタン
-    - [ ] 操作説明画面（チュートリアル）表示（＜TutorialFrame＞　へ）
+    - [ ] 都市環境デザイン工学科の説明表示
+  - [ ] 決定ボタン
+    - [ ] 操作説明画面（チュートリアル）表示（＜TutorialFrame＞　へ）
 - [ ] 操作説明画面（チュートリアル）＜TutorialFrame＞
   - [ ] 背景の表示
   - [ ] フィールドの表示
@@ -40,7 +40,7 @@
   - [ ] 敵の移動
   - [ ] 敵の攻撃
   - [ ] 敵の透過処理
-  - [ ] Not Decided
+  - [ ] Not Decided
   - [ ] ステージ画面の
 - [ ] ステージ画面＜Stage（学科）Frame＞
   - [ ] 機械工学科ステージ＜StageMFrame＞
@@ -49,14 +49,14 @@
   - [ ] 情報工学科ステージ＜StageIFrame＞
     - [ ] Not Decided
   - [ ] 都市環境デザイン工学科＜StageCFrame＞
-  - [ ] 結果画面（＜ResultFrame＞　へ）
+  - [ ] 結果画面（＜ResultFrame＞　へ）
 - [ ] 結果画面＜ResultFrame＞
-  - [ ] Not Decided
+  - [ ] Not Decided
   - [ ] Not Decided
   - [ ] プレイヤーのデータを保存（txtまたは、csv形式で）
   - [ ] 00秒経過後、ランキング画面表示（＜RankingFrame＞　へ）
 - [x] ランキング画面＜RankingFrame＞
-  - [ ] 順位（1～7位）、プレイヤー名、スコア、卒留判定の表示
+  - [ ] 順位（1～7位）、プレイヤー名、スコア、卒留判定の表示
   - [ ] ランキングのデータを保存（txtまたは、csv形式で）
   - [ ] 00秒経過後、ゲームタイトル画面表示（＜StartFrame＞　へ）
 
