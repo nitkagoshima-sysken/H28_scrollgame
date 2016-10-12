@@ -113,16 +113,16 @@ Not Finish/敵3攻撃2
 Not Finish/敵3討伐時1
 Not Finish/罠
 Not Finish/中間地点のフラッグ
-Not Finish/回復ポイントのフラッグ
+Finish/回復ポイントのフラッグ
 Not Finish/追試アイテム
 Not Finish/追試アイテム数表示用アイコン
 Not Finish/単位数表示用アイコン
 Not Finish/スタート
 Not Finish/ゴール
 Not Finish/背景
-Not Finish/ブロック1
-Not Finish/ブロック2
-Not Finish/ブロック3
+Finish/ブロック1
+Finish/ブロック2
+Finish/ブロック3
 
 追加製作事項
 Not Finish/ランキングの背景
