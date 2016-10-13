@@ -88,61 +88,41 @@ Not Finish/ラスボス攻撃2-2
 Not Finish/ラスボス討伐時1
 Not Finish/ラスボス討伐時2
 Not Finish/敵1
-Not Finish/敵1静止1
-Not Finish/敵1静止2
 Not Finish/敵1歩き1
 Not Finish/敵1歩き2
-Not Finish/敵1攻撃1-1
-Not Finish/敵1攻撃1-2
-Not Finish/敵1攻撃2-1
-Not Finish/敵1攻撃2-2
+Not Finish/敵1攻撃1
+Not Finish/敵1攻撃2
 Not Finish/敵1討伐時1
-Not Finish/敵1討伐時2
 Not Finish/敵1亜種
-Not Finish/敵1亜種静止1
-Not Finish/敵1亜種静止2
 Not Finish/敵1亜種歩き1
 Not Finish/敵1亜種歩き2
-Not Finish/敵1亜種攻撃1-1
-Not Finish/敵1亜種攻撃1-2
-Not Finish/敵1亜種攻撃2-1
-Not Finish/敵1亜種攻撃2-2
+Not Finish/敵1亜種攻撃1
+Not Finish/敵1亜種攻撃2
 Not Finish/敵1亜種討伐時1
-Not Finish/敵1亜種討伐時2
 Not Finish/敵2
-Not Finish/敵2静止1
-Not Finish/敵2静止2
 Not Finish/敵2歩き1
 Not Finish/敵2歩き2
-Not Finish/敵2攻撃1-1
-Not Finish/敵2攻撃1-2
-Not Finish/敵2攻撃2-1
-Not Finish/敵2攻撃2-2
+Not Finish/敵2攻撃1
+Not Finish/敵2攻撃2
 Not Finish/敵2討伐時1
-Not Finish/敵2討伐時2
 Not Finish/敵3
-Not Finish/敵3静止1
-Not Finish/敵3静止2
 Not Finish/敵3歩き1
 Not Finish/敵3歩き2
-Not Finish/敵3攻撃1-1
-Not Finish/敵3攻撃1-2
-Not Finish/敵3攻撃2-1
-Not Finish/敵3攻撃2-2
+Not Finish/敵3攻撃1
+Not Finish/敵3攻撃2
 Not Finish/敵3討伐時1
-Not Finish/敵3討伐時2
 Not Finish/罠
 Not Finish/中間地点のフラッグ
-Not Finish/回復ポイントのフラッグ
+Finish/回復ポイントのフラッグ
 Not Finish/追試アイテム
 Not Finish/追試アイテム数表示用アイコン
 Not Finish/単位数表示用アイコン
 Not Finish/スタート
 Not Finish/ゴール
 Not Finish/背景
-Not Finish/ブロック1
-Not Finish/ブロック2
-Not Finish/ブロック3
+Finish/ブロック1
+Finish/ブロック2
+Finish/ブロック3
 
 追加製作事項
 Not Finish/ランキングの背景
