@@ -41,7 +41,8 @@
   - [ ] 敵の移動
   - [ ] 敵の攻撃
   - [ ] 敵の透過処理
-  - [ ] Not Decided
+  - [ ] 敵の変数＜ene1,ene1_5,ene2,ene3,boss＞
+  - [ ] スコア関連変数＜落単なし:full,単位数:tani,残り時間:limi,進卒ボーナス:next,ノーダメ:damage,コンボ:com,同時:douzi＞
   - [ ] ステージ画面の
 - [ ] ステージ画面＜Stage（学科）Frame＞
   - [ ] 機械工学科ステージ＜StageMFrame＞
