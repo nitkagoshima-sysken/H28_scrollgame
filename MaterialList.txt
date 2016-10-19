@@ -2,7 +2,7 @@
 必須製作事項
 Not Finish/学科選択用の教室
 Not Finish/学科選択説明用の黒板
-Not Finish/ランキングの卒留判定表示用の花
+Finish/ランキングの卒留判定表示用の花
 Not Finish/ランキングの卒留判定表示用のド〇ちゃんのパチもん
 Not Finish/卒業証書
 Not Finish/留年通知書
@@ -119,7 +119,7 @@ Not Finish/追試アイテム数表示用アイコン
 Not Finish/単位数表示用アイコン
 Not Finish/スタート
 Not Finish/ゴール
-Not Finish/背景
+Finish/背景
 Finish/ブロック1
 Finish/ブロック2
 Finish/ブロック3
