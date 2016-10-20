@@ -1,46 +1,43 @@
 package package01;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Container;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
+/*
+ * Created on 2005/06/06
+ *
+ */
+
+/**
+ * @author mori
+ *
+ */
 public class TutorialFrame extends JFrame {
-
-	/**
+    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TutorialFrame frame = new TutorialFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TutorialFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-	}
+        // タイトルを設定
+        setTitle("アイテムブロック");
+        // サイズ変更不可
+        setResizable(false);
 
+        // メインパネルを作成してフレームに追加
+        WalkMain panel = new WalkMain();
+        Container contentPane = getContentPane();
+        contentPane.add(panel);
+
+        // パネルサイズに合わせてフレームサイズを自動設定
+        pack();
+    }
+
+    public static void main(String[] args) {
+        TutorialFrame frame = new TutorialFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
 }
+
