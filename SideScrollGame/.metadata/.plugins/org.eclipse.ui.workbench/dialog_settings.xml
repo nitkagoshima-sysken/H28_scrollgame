@@ -40,6 +40,9 @@
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID"/>
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="C:\Users\junpei\Downloads"/>
+			<item value="C:\javagame-master\mariolike\mariolike13\image"/>
+			<item value="C:\Users\junpei\Desktop\新しいフォルダー\H28_scrollgame-1\SideScrollGame\SideScrollGame\Resource"/>
 			<item value="C:\Users\User\Dropbox\scrollGame"/>
 		</list>
 	</section>

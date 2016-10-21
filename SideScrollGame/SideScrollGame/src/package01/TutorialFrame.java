@@ -26,7 +26,7 @@ public class TutorialFrame extends JFrame {
         setResizable(false);
 
         // メインパネルを作成してフレームに追加
-        WalkMain panel = new WalkMain();
+        WalkMain panel = new WalkMain("./Resource/map.txt");
         Container contentPane = getContentPane();
         contentPane.add(panel);
 

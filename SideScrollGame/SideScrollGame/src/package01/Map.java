@@ -126,8 +126,8 @@ public class Map {
         
         int fromTileX = pixelsToTiles(fromX);
         int fromTileY = pixelsToTiles(fromY);
-        int toTileX = pixelsToTiles(toX + sprite.getWidth() - 1);
-        int toTileY = pixelsToTiles(toY + sprite.getHeight() - 1);
+        int toTileX = pixelsToTiles(toX + sprite.getWidth(sprite) - 1);
+        int toTileY = pixelsToTiles(toY + sprite.getHeight(sprite) - 1);
 
         // 衝突しているか調べる
         for (int x = fromTileX; x <= toTileX; x++) {
@@ -194,8 +194,6 @@ public class Map {
         itemSound.play();
         // 叩かれた後のブロックに変化
         map[y][x] = 'c';
-        // ブロックの上にアイテムを出す
-        sprites.add(new Accelerator(tilesToPixels(x), tilesToPixels(y-1), "accelerator.gif", this));
     }
 
     /**
@@ -252,21 +250,16 @@ public class Map {
                 line = br.readLine();
                 for (int j = 0; j < col; j++) {
                     map[i][j] = line.charAt(j);
-                    switch (map[i][j]) {
-                        case 'o':  // コイン
-                            sprites.add(new Coin(tilesToPixels(j), tilesToPixels(i), "coin.gif", this));
-                            break;
-                        case 'a':  // 加速アイテム
-                            sprites.add(new Accelerator(tilesToPixels(j), tilesToPixels(i), "accelerator.gif", this));
-                            break;
-                        case 'j':  // 二段ジャンプアイテム
-                            sprites.add(new JumperTwo(tilesToPixels(j), tilesToPixels(i), "jumper_two.gif", this));
-                            break;
+                    switch(map[i][j])
+                    {
+                    	case 'k':
+                    		sprites.add(new Kuribo(tilesToPixels(j),tilesToPixels(i),"./Resource/kuribo.gif",this));
+                    		break;
                     }
                 }
             }
             br.close();
-        } catch (Exception e) {
+        }catch(Exception e) {
             e.printStackTrace();
         }
     }

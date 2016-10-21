@@ -1,7 +1,10 @@
 package package01;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.geom.Rectangle2D;
 
 /*
  * Created on 2005/06/06
@@ -13,6 +16,7 @@ import java.awt.Point;
  *  
  */
 public class Player extends Sprite {
+	private int ck;
     // 方向
     private static final int RIGHT = 0;
     private static final int LEFT = 1;
@@ -20,7 +24,22 @@ public class Player extends Sprite {
     // 速度
     protected double vx;
     protected double vy;
-
+    
+    //攻撃力
+    protected double pow;
+    
+    //特殊攻撃力
+    protected double spow;
+    
+    //体力
+    public static double Hp;
+    
+    //最大体力
+    public static double mHp;
+    
+    //単位
+    protected int tanni;
+    
     // スピード
     private double speed;
     // ジャンプ力
@@ -38,13 +57,72 @@ public class Player extends Sprite {
     // 向いている方向
     private int dir;
 
-    public Player(double x, double y, String filename, Map map) {
-        super(x, y, filename, map);
-        
+    public Player(double x, double y,Map map)
+    {
+    	super(x, y, map);
+    	ck=DepartmentFrame.ck;
+        if(ck==1)
+        {
+            speed = 3.0;
+            jumpSpeed = 3.0;
+            pow=40;
+            spow=90;
+            mHp=110;
+            Hp=110;
+            tanni=0;
+        }
+        else if(ck==2)
+        {
+        	speed = 5.0;
+            jumpSpeed = 3.0;
+            pow=40;
+            spow=70;
+            mHp=90;
+            Hp=90;
+            tanni=0;
+        }
+        else if(ck==3)
+        {
+        	speed = 4.0;
+            jumpSpeed = 3.0;
+            pow=40;
+            spow=110;
+            mHp=100;
+            Hp=100;
+            tanni=0;
+        }
+        else if(ck==4)
+        {
+        	speed = 6.0;
+            jumpSpeed = 3.0;
+            pow=40;
+            spow=0;
+            mHp=80;
+            Hp=80;
+            tanni=0;
+        }
+        else if(ck==5)
+        {
+        	speed = 2.0;
+            jumpSpeed = 3.0;
+            pow=40;
+            spow=0;
+            mHp=120;
+            Hp=120;
+            tanni=0;
+        }
+        else
+        {
+        	speed = 6.0;
+            jumpSpeed = 3.0;
+            pow=40;
+            spow=0;
+            mHp=80;
+            Hp=80;
+            tanni=0;
+        }
         vx = 0;
         vy = 0;
-        speed = 6.0;
-        jumpSpeed = 12.0;
         onGround = false;
         forceJump = false;
         jumperTwo = false;
@@ -82,7 +160,7 @@ public class Player extends Sprite {
         // 地上にいるか再ジャンプ可能なら
         if (onGround || forceJump) {
             // 上向きに速度を加える
-            vy = -jumpSpeed;
+            vy = -jumpSpeed*4;
             onGround = false;
             forceJump = false;
         } else if (jumperTwo && canJumperTwo) {
@@ -114,7 +192,7 @@ public class Player extends Sprite {
             // 衝突するタイルがある場合
             if (vx > 0) { // 右へ移動中なので右のブロックと衝突
                 // ブロックにめりこむ or 隙間がないように位置調整
-                x = Map.tilesToPixels(tile.x) - width;
+                x = Map.tilesToPixels(tile.x) - pwidth;
             } else if (vx < 0) { // 左へ移動中なので左のブロックと衝突
                 // 位置調整
                 x = Map.tilesToPixels(tile.x + 1);
@@ -137,7 +215,7 @@ public class Player extends Sprite {
             // 衝突するタイルがある場合
             if (vy > 0) { // 下へ移動中なので下のブロックと衝突（着地）
                 // 位置調整
-                y = Map.tilesToPixels(tile.y) - height;
+                y = Map.tilesToPixels(tile.y) - pheight;
                 // 着地したのでy方向速度を0に
                 vy = 0;
                 // 着地
@@ -175,12 +253,54 @@ public class Player extends Sprite {
      * @param offsetY Y方向オフセット
      */
     public void draw(Graphics g, int offsetX, int offsetY) {
-        g.drawImage(image,
-                (int) x + offsetX, (int) y + offsetY, 
-                (int) x + offsetX + width, (int) y + offsetY + height,
-                count * width, dir * height,
-                count * width + width, dir * height + height,
-                null);
+    	if(count==0)
+    	{
+    		if(dir==RIGHT)
+    		{
+    			g.drawImage(playerimage,
+                        (int) x + offsetX, (int) y + offsetY, 
+                        (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
+                        0,0,
+                        pwidth,pheight,
+                        null);
+    		}
+    		else if(dir==LEFT)
+    		{
+    			g.drawImage(playerimage,
+                        (int) x + offsetX, (int) y + offsetY, 
+                        (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
+                        0,0,
+                        pwidth,pheight,
+                        null);
+    		}
+    	}
+        if(count==1)
+        {
+        	if(dir==RIGHT)
+    		{
+    			g.drawImage(playerimage,
+                        (int) x + offsetX, (int) y + offsetY, 
+                        (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
+                        0,0,
+                        pwidth,pheight,
+                        null);
+    		}
+    		else if(dir==LEFT)
+    		{
+    			g.drawImage(playerimage,
+                        (int) x + offsetX, (int) y + offsetY, 
+                        (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
+                        0,0,
+                        pwidth,pheight,
+                        null);
+    		}
+        }
+        Graphics2D g2=(Graphics2D)g;
+      //体力バー描画
+        g2.setColor(Color.RED);
+        g2.draw(new Rectangle2D.Double(10,10,100,10));
+        g2.setColor(Color.GREEN);
+        g2.fill(new Rectangle2D.Double(11,11,99*(Hp/mHp),9));
     }
 
     /**

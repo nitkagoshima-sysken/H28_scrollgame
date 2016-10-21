@@ -26,23 +26,28 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 	// パネルサイズ
     public static final int WIDTH =1056;
-    public static final int HEIGHT = 720;
+    public static final int HEIGHT = 720;   
 
     // マップ
     private Map map;
 
     // プレイヤー
-    private Player player;
-
+    protected static Player player;
+    
     // アクションキー
     private ActionKey goLeftKey;
     private ActionKey goRightKey;
     private ActionKey jumpKey;
 
+    //透過用フラグ
+    protected static boolean Hpflug=true;
+    
     // ゲームループ用スレッド
     private Thread gameLoop;
+    
+    protected static Wait Hpre;
 
-    public WalkMain() {
+    public WalkMain(String filename) {
         // パネルの推奨サイズを設定、pack()するときに必要
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         // パネルがキー入力を受け付けるようにする
@@ -55,10 +60,11 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
         jumpKey = new ActionKey(ActionKey.DETECT_INITIAL_PRESS_ONLY);
 
         // マップを作成
-        map = new Map("./Resource/map.txt");
+        map = new Map(filename);
 
         // プレイヤーを作成
-        player = new Player(192, 48, "./Resource/player.gif", map);
+        player = new Player(192, 48, map);
+        
 
         // キーイベントリスナーを登録
         addKeyListener(this);
@@ -76,7 +82,7 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
         map = new Map("./Resource/map.txt");
 
         // プレイヤーを作成
-        player = new Player(192, 32, "./Resource/player.gif", map);
+        player = new Player(192, 32, map);
     }
 
     /**
@@ -102,62 +108,44 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
 
             // プレイヤーの状態を更新
             player.update();
-
+            
             // マップにいるスプライトを取得
-            LinkedList<?> sprites = map.getSprites();            
-            Iterator<?> iterator = sprites.iterator();
+            LinkedList<Sprite> sprites = map.getSprites();            
+            Iterator<Sprite> iterator = sprites.iterator();
             while (iterator.hasNext()) {
                 Sprite sprite = (Sprite)iterator.next();
                 
                 // スプライトの状態を更新する
-                sprite.update();
-
+              	sprite.update();
                 // プレイヤーと接触してたら
-                if (player.isCollision(sprite)) {
-                    if (sprite instanceof Kuribo) {  // 栗ボー
-                        Kuribo kuribo = (Kuribo)sprite;
+                if (player.isCollision(sprite))
+                {
+                	
+                		Kuribo kuribo = (Kuribo)sprite;
                         // 上から踏まれてたら
-                        if ((int)player.getY() < (int)kuribo.getY()) {
+                        if ((int)player.getY()+32 < (int)kuribo.getY())
+                        {
                             // 栗ボーは消える
-                            sprites.remove(kuribo);
+                        	sprites.remove(kuribo);
                             // サウンド
-                            kuribo.play();
                             // 踏むとプレイヤーは再ジャンプ
                             player.setForceJump(true);
                             player.jump();
                             break;
-                        } else {
-                            // ゲームオーバー
-                            gameOver();
                         }
-                    } else if (sprite instanceof Coin) {  // コイン
-                           Coin coin = (Coin)sprite;
-                            // コインは消える
-                            sprites.remove(coin);
-                            // ちゃり～ん
-                            coin.play();
-                            // spritesから削除したので
-                            // breakしないとiteratorがおかしくなる
-                            break;
-                    } else if (sprite instanceof Accelerator) {  // 加速アイテム
-                        // アイテムは消える
-                        sprites.remove(sprite);
-                        Accelerator accelerator = (Accelerator)sprite;
-                        // サウンド
-                        accelerator.play();
-                        // アイテムをその場で使う
-                        accelerator.use(player);
-                        break;
-                    } else if (sprite instanceof JumperTwo) {  // 二段ジャンプアイテム
-                        // アイテムは消える
-                        sprites.remove(sprite);
-                        JumperTwo jumperTwo = (JumperTwo)sprite;
-                        // サウンド
-                        jumperTwo.play();
-                        // アイテムをその場で使う
-                        jumperTwo.use(player);
-                        break;                       
-                    }
+                        else
+                        {
+                        	if(Hpflug==true)
+                        	{
+                        		Player.Hp-=10;
+                        		Hpflug=false;
+                        		Hpre=new Wait();
+                        		Hpre.start();
+                        	}
+                        	else
+                        	{
+                        	}
+                        }
                 }
             }
             
@@ -180,7 +168,6 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         // 背景を黒で塗りつぶす
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -203,13 +190,16 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
         // プレイヤーを描画
         player.draw(g, offsetX, offsetY);
         
-        // スプライトを描画
-        // マップにいるスプライトを取得
-        LinkedList<?> sprites = map.getSprites();            
-        Iterator<?> iterator = sprites.iterator();
-        while (iterator.hasNext()) {
-            Sprite sprite = (Sprite)iterator.next();
-            sprite.draw(g, offsetX, offsetY);
+        LinkedList<Sprite> sprites=map.getSprites();
+        Iterator<Sprite> sprite=sprites.iterator();
+        while(sprite.hasNext())
+        {
+        	Sprite sp=(Sprite)sprite.next();
+        	if(sp instanceof Kuribo)
+        	{
+        		Kuribo kuri=(Kuribo)sp;
+        		kuri.draw(g, offsetX, offsetY);
+        	}
         }
     }
 

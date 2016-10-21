@@ -21,12 +21,17 @@ public abstract class Sprite {
     protected double y;
     
     // 幅
+    protected int pwidth;
+    protected int kwidth;
     protected int width;
     // 高さ
+    protected int pheight;
+    protected int kheight;
     protected int height;
     
     // スプライト画像
-    protected Image image;
+    protected static Image playerimage;
+    protected static Image kuriboimage;
 
     // アニメーション用カウンタ
     protected int count;
@@ -34,16 +39,20 @@ public abstract class Sprite {
     // マップへの参照
     protected Map map;
 
-    public Sprite(double x, double y, String fileName, Map map) {
+    public Sprite(double x, double y, Map map) {
         this.x = x;
         this.y = y;
         this.map = map;
 
-        width = 32;
-        height = 32;
+        pwidth = 32;
+        pheight = 64;
+        
+        kwidth=32;
+        kheight=32;
+        
 
         // イメージをロードする
-        loadImage(fileName);
+        loadImage();
 
         count = 0;
         
@@ -64,22 +73,15 @@ public abstract class Sprite {
      * @param offsetX X方向オフセット
      * @param offsetY Y方向オフセット
      */
-    public void draw(Graphics g, int offsetX, int offsetY) {
-        g.drawImage(image,
-                (int) x + offsetX, (int) y + offsetY, 
-                (int) x + offsetX + width, (int) y + offsetY + height,
-                count * width, 0,
-                count * width + width, height,
-                null);
-    }
+    public abstract void draw(Graphics g, int offsetX, int offsetY);
 
     /**
      * 他のスプライトと接触しているか
      * @param sprite スプライト
      */
     public boolean isCollision(Sprite sprite) {
-        Rectangle playerRect = new Rectangle((int)x, (int)y, width, height);
-        Rectangle spriteRect = new Rectangle((int)sprite.getX(), (int)sprite.getY(), sprite.getWidth(), sprite.getHeight());
+        Rectangle playerRect = new Rectangle((int)x, (int)y, pwidth, pheight);
+        Rectangle spriteRect = new Rectangle((int)sprite.getX(), (int)sprite.getY(), sprite.getWidth(sprite), sprite.getHeight(sprite));
         // 自分の矩形と相手の矩形が重なっているか調べる
         if (playerRect.intersects(spriteRect)) {
             return true;
@@ -103,23 +105,41 @@ public abstract class Sprite {
     /**
      * @return Returns the width.
      */
-    public int getWidth() {
-        return width;
+    public int getWidth(Sprite sprite) {
+    	if(sprite instanceof Kuribo)
+    	{
+    		return kwidth;
+    	}
+    	else if(sprite instanceof Player)
+    	{
+    		return pwidth;
+    	}
+		return 0;
     }
     /**
      * @return Returns the height.
      */
-    public int getHeight() {
-        return height;
+    public int getHeight(Sprite sprite) {
+    	if(sprite instanceof Kuribo)
+    	{
+    		return kheight;
+    	}
+    	else if(sprite instanceof Player)
+    	{
+    		return pheight;
+    	}
+		return 0;
     }
 
     /**
      * イメージをロードする
      * @param filename イメージファイル名
      */
-    private void loadImage(String filename) {
-        ImageIcon icon = new ImageIcon(filename);
-        image = icon.getImage();
+    protected static void loadImage() {
+        ImageIcon icon = new ImageIcon( "./Resource/情報（側面）静止.jpg");
+        playerimage = icon.getImage();
+        icon=new ImageIcon( "./Resource/kuribo.gif");
+        kuriboimage=icon.getImage();
     }
 
     // アニメーション用スレッド

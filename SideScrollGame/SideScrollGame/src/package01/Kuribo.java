@@ -1,6 +1,6 @@
 package package01;
 
-import java.applet.AudioClip;
+import java.awt.Graphics;
 import java.awt.Point;
 
 /*
@@ -12,23 +12,23 @@ import java.awt.Point;
  * @author mori
  *
  */
-public class Kuribo extends Sprite {
+public class Kuribo extends Sprite{
     // スピード
     private static final double SPEED = 1;
 
     // 速度
     protected double vx;
     protected double vy;
-
-    // 踏まれたときの音
-    private AudioClip sound;
-
+    
     public Kuribo(double x, double y, String filename, Map map) {
-        super(x, y, filename, map);
+        super(x, y, map);
         
         // 左に移動を続ける
         vx = -SPEED;
         vy = 0;
+        
+        
+        
         
         // サウンドをロード
        // sound = Applet.newAudioClip(getClass().getResource("se/push13.wav"));
@@ -51,7 +51,7 @@ public class Kuribo extends Sprite {
             // 衝突するタイルがある場合
             if (vx > 0) { // 右へ移動中なので右のブロックと衝突
                 // ブロックにめりこむ or 隙間がないように位置調整
-                x = Map.tilesToPixels(tile.x) - width;
+                x = Map.tilesToPixels(tile.x) - kwidth;
             } else if (vx < 0) { // 左へ移動中なので左のブロックと衝突
                 // 位置調整
                 x = Map.tilesToPixels(tile.x + 1);
@@ -73,7 +73,7 @@ public class Kuribo extends Sprite {
             // 衝突するタイルがある場合
             if (vy > 0) { // 下へ移動中なので下のブロックと衝突（着地）
                 // 位置調整
-                y = Map.tilesToPixels(tile.y) - height;
+                y = Map.tilesToPixels(tile.y) - kheight;
                 // 着地したのでy方向速度を0に
                 vy = 0;
             } else if (vy < 0) { // 上へ移動中なので上のブロックと衝突（天井ごん！）
@@ -84,11 +84,15 @@ public class Kuribo extends Sprite {
             }
         }
     }
-    
-    /**
-     * サウンドを再生
-     */
-    public void play() {
-        sound.play();
+    public void draw(Graphics g, int offsetX, int offsetY)
+    {
+    	 g.drawImage(kuriboimage,
+                 (int) x + offsetX, (int) y + offsetY, 
+                 (int) x + offsetX + kwidth, (int) y + offsetY + kheight,
+                 count * kwidth, 0,
+                 count * kwidth + kwidth, kheight,
+                 null);
     }
+
+    
 }
