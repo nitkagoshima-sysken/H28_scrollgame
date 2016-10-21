@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 /*
  * Created on 2005/06/06
@@ -56,6 +58,9 @@ public class Player extends Sprite {
 
     // 向いている方向
     private int dir;
+    
+    WalkMain w;
+    
 
     public Player(double x, double y,Map map)
     {
@@ -171,6 +176,53 @@ public class Player extends Sprite {
             canJumperTwo = false;
         }
     }
+    
+    public void kougeki()
+    {
+    	// マップにいるスプライトを取得
+        LinkedList<Sprite> sprites = map.getSprites();            
+        Iterator<Sprite> iterator = sprites.iterator();
+        while (iterator.hasNext()) {
+            Sprite sprite = (Sprite)iterator.next();
+            
+            // プレイヤーと接触してたら
+            if (isCollision2(sprite))
+            {
+            	if(sprite instanceof Enemy1)
+            	{
+            		Enemy1 enemy1 = (Enemy1)sprite;
+                    // 栗ボーは消える
+                    if(WalkMain.Hpflug==true)
+                    {
+                    	enemy1.eHp1-=pow;
+                    	if(enemy1.eHp1<0)
+                        {
+                        	sprites.remove(enemy1);
+                        }
+                    	WalkMain.Hpflug=false;
+                    	WalkMain.Hpre=new Wait();
+                    	WalkMain.Hpre.start();
+                    }
+            	}
+            	else if(sprite instanceof Enemy2)
+            	{
+            		Enemy2 enemy2 = (Enemy2)sprite;
+                    // 栗ボーは消える
+                    if(WalkMain.Hpflug==true)
+                    {
+                    	enemy2.eHp2-=pow;
+                    	if(enemy2.eHp2<0)
+                        {
+                        	sprites.remove(enemy2);
+                        }
+                    	WalkMain.Hpflug=false;
+                    	WalkMain.Hpre=new Wait();
+                    	WalkMain.Hpre.start();
+                    }
+            	}
+            }
+        }
+    }
 
     /**
      * プレイヤーの状態を更新する
@@ -255,45 +307,21 @@ public class Player extends Sprite {
     public void draw(Graphics g, int offsetX, int offsetY) {
     	if(count==0)
     	{
-    		if(dir==RIGHT)
-    		{
-    			g.drawImage(playerimage,
-                        (int) x + offsetX, (int) y + offsetY, 
-                        (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
-                        0,0,
-                        pwidth,pheight,
-                        null);
-    		}
-    		else if(dir==LEFT)
-    		{
-    			g.drawImage(playerimage,
-                        (int) x + offsetX, (int) y + offsetY, 
-                        (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
-                        0,0,
-                        pwidth,pheight,
-                        null);
-    		}
+    		g.drawImage(playerimage,
+                      (int) x + offsetX, (int) y + offsetY, 
+                      (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
+                      0,0,
+                      pwidth,pheight,
+                      null);
     	}
-        if(count==1)
+    	else if(count==1)
         {
-        	if(dir==RIGHT)
-    		{
-    			g.drawImage(playerimage,
+    			g.drawImage(playerimage2,
                         (int) x + offsetX, (int) y + offsetY, 
                         (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
                         0,0,
                         pwidth,pheight,
                         null);
-    		}
-    		else if(dir==LEFT)
-    		{
-    			g.drawImage(playerimage,
-                        (int) x + offsetX, (int) y + offsetY, 
-                        (int) x + offsetX + pwidth, (int) y + offsetY + pheight,
-                        0,0,
-                        pwidth,pheight,
-                        null);
-    		}
         }
         Graphics2D g2=(Graphics2D)g;
       //体力バー描画

@@ -38,6 +38,7 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
     private ActionKey goLeftKey;
     private ActionKey goRightKey;
     private ActionKey jumpKey;
+    private ActionKey kougeKey;
 
     //透過用フラグ
     protected static boolean Hpflug=true;
@@ -58,6 +59,7 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
         goRightKey = new ActionKey();
         // ジャンプだけはキーを押し続けても1回だけしかジャンプしないようにする
         jumpKey = new ActionKey(ActionKey.DETECT_INITIAL_PRESS_ONLY);
+        kougeKey=new ActionKey();
 
         // マップを作成
         map = new Map(filename);
@@ -77,12 +79,14 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
     /**
      * ゲームオーバー
      */
-    public void gameOver() {
-        // マップを作成
-        map = new Map("./Resource/map.txt");
-
-        // プレイヤーを作成
-        player = new Player(192, 32, map);
+    public void gameOver()
+    {
+    	TutorialFrame.frame.setVisible(false);
+    }
+    
+    public void Clear()
+    {
+    	TutorialFrame.frame.setVisible(false);
     }
 
     /**
@@ -96,14 +100,18 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
             } else if (goRightKey.isPressed()) {
                 // 右キーが押されていれば右向きに加速
                 player.accelerateRight();
-            } else {
-                // 何も押されてないときは停止
-                player.stop();
+            }else {
+            	// 何も押されてないときは停止
+            	player.stop();
             }
 
             if (jumpKey.isPressed()) {
                 // ジャンプする
                 player.jump();
+            }
+            
+            if(kougeKey.isPressed()) {
+            	player.kougeki();
             }
 
             // プレイヤーの状態を更新
@@ -120,15 +128,27 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
                 // プレイヤーと接触してたら
                 if (player.isCollision(sprite))
                 {
-                	
-                		Kuribo kuribo = (Kuribo)sprite;
+                	if(sprite instanceof Enemy1)
+                	{
+                		Enemy1 enemy1 = (Enemy1)sprite;
                         // 上から踏まれてたら
-                        if ((int)player.getY()+32 < (int)kuribo.getY())
+                        if ((int)player.getY()+32 < (int)enemy1.getY())
                         {
                             // 栗ボーは消える
-                        	sprites.remove(kuribo);
-                            // サウンド
-                            // 踏むとプレイヤーは再ジャンプ
+                        	if(Hpflug==true)
+                        	{
+                        		enemy1.eHp1-=player.pow/2;
+                        		Hpflug=false;
+                        		Hpre=new Wait();
+                        		Hpre.start();
+                        	}
+                        	else
+                        	{
+                        		if(enemy1.eHp1<0)
+                            	{
+                            		sprites.remove(enemy1);
+                            	}
+                        	}
                             player.setForceJump(true);
                             player.jump();
                             break;
@@ -137,7 +157,7 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
                         {
                         	if(Hpflug==true)
                         	{
-                        		Player.Hp-=10;
+                        		Player.Hp-=5;
                         		Hpflug=false;
                         		Hpre=new Wait();
                         		Hpre.start();
@@ -146,6 +166,52 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
                         	{
                         	}
                         }
+                	}
+                	else if(sprite instanceof Enemy2)
+                	{
+                		Enemy2 enemy2 = (Enemy2)sprite;
+                        // 上から踏まれてたら
+                        if ((int)player.getY()+32 < (int)enemy2.getY())
+                        {
+                            // 栗ボーは消える
+                        	if(Hpflug==true)
+                        	{
+                        		enemy2.eHp2-=player.pow/2;
+                        		Hpflug=false;
+                        		Hpre=new Wait();
+                        		Hpre.start();
+                        	}
+                        	else
+                        	{
+                        		if(enemy2.eHp2<0)
+                            	{
+                            		sprites.remove(enemy2);
+                            	}
+                        	}
+                            player.setForceJump(true);
+                            player.jump();
+                            break;
+                        }
+                        else
+                        {
+                        	if(Hpflug==true)
+                        	{
+                        		Player.Hp-=5;
+                        		Hpflug=false;
+                        		Hpre=new Wait();
+                        		Hpre.start();
+                        	}
+                        	else
+                        	{
+                        	}
+                        }
+                	}
+                	else if(sprite instanceof Goal)
+                	{
+                		Goal goal=(Goal)sprite;
+                		Clear();
+                	}
+                	
                 }
             }
             
@@ -186,21 +252,30 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
 
         // マップを描画
         map.draw(g, offsetX, offsetY);
-
-        // プレイヤーを描画
-        player.draw(g, offsetX, offsetY);
         
         LinkedList<Sprite> sprites=map.getSprites();
         Iterator<Sprite> sprite=sprites.iterator();
         while(sprite.hasNext())
         {
         	Sprite sp=(Sprite)sprite.next();
-        	if(sp instanceof Kuribo)
+        	if(sp instanceof Enemy1)
         	{
-        		Kuribo kuri=(Kuribo)sp;
-        		kuri.draw(g, offsetX, offsetY);
+        		Enemy1 enemy1=(Enemy1)sp;
+        		enemy1.draw(g, offsetX, offsetY);
+        	}
+        	else if(sp instanceof Enemy2)
+        	{
+        		Enemy2 enemy2=(Enemy2)sp;
+        		enemy2.draw(g, offsetX, offsetY);
+        	}
+        	else if(sp instanceof Goal)
+        	{
+        		Goal go=(Goal)sp;
+        		go.draw(g, offsetX, offsetY);
         	}
         }
+        // プレイヤーを描画
+        player.draw(g, offsetX, offsetY);
     }
 
     /**
@@ -220,6 +295,9 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
         if (key == KeyEvent.VK_UP) {
             jumpKey.press();
         }
+        if (key == KeyEvent.VK_SPACE) {
+            kougeKey.press();
+        }
     }
 
     /**
@@ -238,6 +316,10 @@ public class WalkMain extends JPanel implements Runnable, KeyListener {
         }
         if (key == KeyEvent.VK_UP) {
             jumpKey.release();
+        }
+        if(key==KeyEvent.VK_SPACE)
+        {
+        	kougeKey.release();
         }
     }
 

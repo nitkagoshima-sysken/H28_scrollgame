@@ -18,6 +18,7 @@ public class TutorialFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static TutorialFrame frame;
 
 	public TutorialFrame() {
         // タイトルを設定
@@ -35,7 +36,7 @@ public class TutorialFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        TutorialFrame frame = new TutorialFrame();
+        frame = new TutorialFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

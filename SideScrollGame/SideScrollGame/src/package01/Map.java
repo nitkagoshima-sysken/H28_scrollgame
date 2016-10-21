@@ -40,8 +40,6 @@ public class Map {
     
     // ブロックの画像
     private Image blockImage;
-    private Image coinBlockImage;
-    private Image coinBlockImage2;
 
     // スプライトリスト
     private LinkedList<Sprite> sprites;
@@ -93,13 +91,6 @@ public class Map {
                 switch (map[i][j]) {
                     case 'B'  : // ブロック
                         g.drawImage(blockImage, tilesToPixels(j) + offsetX, tilesToPixels(i) + offsetY, null);
-                        break;
-                    case 'C' : // コインブロック
-                    case 'I' : // アイテムブロック
-                        g.drawImage(coinBlockImage, tilesToPixels(j) + offsetX, tilesToPixels(i) + offsetY, null);
-                        break;
-                    case 'c' : // 叩かれたコインブロック
-                        g.drawImage(coinBlockImage2, tilesToPixels(j) + offsetX, tilesToPixels(i) + offsetY, null);
                         break;
                 }
             }
@@ -220,12 +211,6 @@ public class Map {
     private void loadImage() {
         ImageIcon icon = new ImageIcon("./Resource/ironplate.png");
         blockImage = icon.getImage();
-        
-        icon = new ImageIcon("image/coin_block.gif");
-        coinBlockImage = icon.getImage();
-        
-        icon = new ImageIcon("image/coin_block2.gif");
-        coinBlockImage2 = icon.getImage();
     }
     
     /**
@@ -252,8 +237,14 @@ public class Map {
                     map[i][j] = line.charAt(j);
                     switch(map[i][j])
                     {
-                    	case 'k':
-                    		sprites.add(new Kuribo(tilesToPixels(j),tilesToPixels(i),"./Resource/kuribo.gif",this));
+                    	case 'e':
+                    		sprites.add(new Enemy1(tilesToPixels(j),tilesToPixels(i),this));
+                    		break;
+                    	case 'n':
+                    		sprites.add(new Enemy2(tilesToPixels(j),tilesToPixels(i),this));
+                    		break;
+                    	case 'g':
+                    		sprites.add(new Goal(tilesToPixels(j),tilesToPixels(i),this));
                     		break;
                     }
                 }
