@@ -1,0 +1,10 @@
+package package01;
+
+public class Goal extends Sprite{
+
+	public Goal(double x, double y, Map map) {
+		super(x, y, map);
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+}

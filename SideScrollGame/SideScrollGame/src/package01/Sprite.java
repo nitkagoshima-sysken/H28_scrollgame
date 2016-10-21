@@ -19,14 +19,26 @@ public abstract class Sprite {
     // 位置
     protected double x;
     protected double y;
-    
+
     // 幅
+    protected int pwidth;
+    protected int e1width;
+    protected int e2width;
+    protected int gwidth;
     protected int width;
     // 高さ
+    protected int pheight;
+    protected int e1height;
+    protected int e2height;
+    protected int gheight;
     protected int height;
-    
+
     // スプライト画像
-    protected Image image;
+    protected static Image playerimage;
+    protected static Image playerimage2;
+    protected static Image enemy1image;
+    protected static Image enemy2image;
+    protected static Image goalImage;
 
     // アニメーション用カウンタ
     protected int count;
@@ -34,19 +46,29 @@ public abstract class Sprite {
     // マップへの参照
     protected Map map;
 
-    public Sprite(double x, double y, String fileName, Map map) {
+    public Sprite(double x, double y, Map map) {
         this.x = x;
         this.y = y;
         this.map = map;
 
-        width = 32;
-        height = 32;
+        pwidth = 32;
+        pheight = 64;
+
+        e1width=32;
+        e1height=32;
+
+        e2width=32;
+        e2height=64;
+
+        gheight=350;
+        gwidth=300;
+
 
         // イメージをロードする
-        loadImage(fileName);
+        loadImage();
 
         count = 0;
-        
+
         // アニメーション用スレッドを開始
         AnimationThread thread = new AnimationThread();
         thread.start();
@@ -59,32 +81,36 @@ public abstract class Sprite {
 
     /**
      * スプライトを描画
-     * 
+     *
      * @param g 描画オブジェクト
      * @param offsetX X方向オフセット
      * @param offsetY Y方向オフセット
      */
-    public void draw(Graphics g, int offsetX, int offsetY) {
-        g.drawImage(image,
-                (int) x + offsetX, (int) y + offsetY, 
-                (int) x + offsetX + width, (int) y + offsetY + height,
-                count * width, 0,
-                count * width + width, height,
-                null);
-    }
+    public abstract void draw(Graphics g, int offsetX, int offsetY);
 
     /**
      * 他のスプライトと接触しているか
      * @param sprite スプライト
      */
     public boolean isCollision(Sprite sprite) {
-        Rectangle playerRect = new Rectangle((int)x, (int)y, width, height);
-        Rectangle spriteRect = new Rectangle((int)sprite.getX(), (int)sprite.getY(), sprite.getWidth(), sprite.getHeight());
+        Rectangle playerRect = new Rectangle((int)x, (int)y, pwidth, pheight);
+        Rectangle spriteRect = new Rectangle((int)sprite.getX(), (int)sprite.getY(), sprite.getWidth(sprite), sprite.getHeight(sprite));
         // 自分の矩形と相手の矩形が重なっているか調べる
         if (playerRect.intersects(spriteRect)) {
             return true;
         }
-        
+
+        return false;
+    }
+
+    public boolean isCollision2(Sprite sprite) {
+        Rectangle playerRect = new Rectangle((int)x+2*pwidth, (int)y, pwidth, pheight);
+        Rectangle spriteRect = new Rectangle((int)sprite.getX(), (int)sprite.getY(), sprite.getWidth(sprite), sprite.getHeight(sprite));
+        // 自分の矩形と相手の矩形が重なっているか調べる
+        if (playerRect.intersects(spriteRect)) {
+            return true;
+        }
+
         return false;
     }
 
@@ -103,23 +129,63 @@ public abstract class Sprite {
     /**
      * @return Returns the width.
      */
-    public int getWidth() {
-        return width;
+    public int getWidth(Sprite sprite) {
+    	if(sprite instanceof Enemy1)
+    	{
+    		return e1width;
+    	}
+    	else if(sprite instanceof Enemy2)
+    	{
+    		return e2width;
+    	}
+    	else if(sprite instanceof Player)
+    	{
+    		return pwidth;
+    	}
+    	else if(sprite instanceof Goal)
+    	{
+    		return gwidth;
+    	}
+		return 0;
     }
     /**
      * @return Returns the height.
      */
-    public int getHeight() {
-        return height;
+    public int getHeight(Sprite sprite) {
+    	if(sprite instanceof Enemy1)
+    	{
+    		return e1height;
+    	}
+    	else if(sprite instanceof Enemy2)
+    	{
+    		return e2height;
+    	}
+    	else if(sprite instanceof Player)
+    	{
+    		return pheight;
+    	}
+    	else if(sprite instanceof Goal)
+    	{
+    		return gheight;
+    	}
+		return 0;
     }
 
     /**
      * イメージをロードする
      * @param filename イメージファイル名
      */
-    private void loadImage(String filename) {
-        ImageIcon icon = new ImageIcon(filename);
-        image = icon.getImage();
+    protected static void loadImage() {
+        ImageIcon icon = new ImageIcon( "./Resource/情報（側面）歩き右足前.png");
+        playerimage = icon.getImage();
+        icon = new ImageIcon( "./Resource/情報（側面）静止差分.png");
+        playerimage2 = icon.getImage();
+        icon=new ImageIcon( "./Resource/敵1 塗り.png");
+        enemy1image=icon.getImage();
+        icon=new ImageIcon("./Resource/demo2_1.png");
+        enemy2image=icon.getImage();
+        icon = new ImageIcon("./Resource/goal.png");
+        goalImage=icon.getImage();
     }
 
     // アニメーション用スレッド
