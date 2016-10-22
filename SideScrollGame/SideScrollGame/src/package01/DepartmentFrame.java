@@ -17,17 +17,17 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 	
 	public static final long serialVersionUID = 1L;
 	//機械画像アドレス
-	ImageIcon icon=new ImageIcon("./Resource/設定a.png");
+	ImageIcon icon=new ImageIcon("./Resource/sorry100px.png");
 	//電気画像アドレス
-	ImageIcon icon1=new ImageIcon("./Resource/マルチメータ２.png");
+	ImageIcon icon1=new ImageIcon("./Resource/sorry100px.png");
 	//制御画像アドレス
-	ImageIcon icon2=new ImageIcon("./Resource/ロボット2.png"); 
+	ImageIcon icon2=new ImageIcon("./Resource/sorry100px.png"); 
 	//情報画像アドレス
-	ImageIcon icon3=new ImageIcon("./Resource/pc2.png");
+	ImageIcon icon3=new ImageIcon("./Resource/pc100px.png");
 	//都市環画像アドレス
-	ImageIcon icon4=new ImageIcon("./Resource/製図版.png");
+	ImageIcon icon4=new ImageIcon("./Resource/sorry100px.png");
 	//背景画像アドレス
-	ImageIcon icon5=new ImageIcon("./Resource/製図版.png");
+	//ImageIcon icon5=new ImageIcon("./Resource/sorry.png");
 	private JPanel contentPane;
 	
 	public  static int ck=0;
@@ -74,6 +74,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(0, 0, 1000, 600);
@@ -83,7 +84,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 		
 		//機械工学科ボタン
 		KikaiButton = new JButton("");
-		KikaiButton.setBounds(245, 7, 50, 50);
+		KikaiButton.setBounds(100, 100, 100, 100);
 		KikaiButton.setIcon(icon);
 		KikaiButton.setContentAreaFilled(false);
 		KikaiButton.setBorderPainted(false);
@@ -92,7 +93,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 		//機械工学科ボタン終
 		//電気工学科ボタン
 		DenkiButton = new JButton("");
-		DenkiButton.setBounds(358, 7, 50, 30);
+		DenkiButton.setBounds(200, 300, 100, 100);
 		DenkiButton.setIcon(icon1);
 		DenkiButton.setContentAreaFilled(false);
 		DenkiButton.setBorderPainted(false);
@@ -101,7 +102,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 		//電気工学科ボタン終
 		//制御工学科ボタン
 		SeigyoButton = new JButton("");
-		SeigyoButton.setBounds(454, 7, 50, 70);
+		SeigyoButton.setBounds(400, 100, 100, 100);
 		SeigyoButton.setIcon(icon2);
 		SeigyoButton.setContentAreaFilled(false);
 		SeigyoButton.setBorderPainted(false);
@@ -110,7 +111,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 		//制御工学科ボタン終
 		//情報工学科ボタン
 		JouhouButton = new JButton("");
-		JouhouButton.setBounds(550, 7, 50, 40);
+		JouhouButton.setBounds(550, 7, 100, 100);
 		JouhouButton.setIcon(icon3);
 		JouhouButton.setContentAreaFilled(false);
 		JouhouButton.setBorderPainted(false);
@@ -119,7 +120,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 		//情報工学科ボタン終
 		//都市環ボタン
 		TosikanButton = new JButton("");
-		TosikanButton.setBounds(646, 7, 40, 60);
+		TosikanButton.setBounds(700, 200, 100, 100);
 		TosikanButton.setIcon(icon4);
 		TosikanButton.setContentAreaFilled(false);
 		TosikanButton.setBorderPainted(false);
@@ -127,10 +128,10 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 		panel_1.add(TosikanButton);
 		//都市環ボタン
 		//背景設置用ラベル
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(icon5);
-		lblNewLabel.setBounds(0, 0, 1000, 600);
-		panel_1.add(lblNewLabel);
+		//JLabel lblNewLabel = new JLabel("");
+		//lblNewLabel.setIcon(icon5);
+		//lblNewLabel.setBounds(0, 0, 1000, 600);
+		//panel_1.add(lblNewLabel);
 		
 		//確定ボタン
 		KakuteiButton = new JButton("確定！");
@@ -199,7 +200,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 			lab.setText("　　　　　　　　機械です");
 			lab2.setText("　　　　　　　　機械工学科");
 			lbl.setText("　　　　　　　     難易度★");
-			ck=1;
+			ck=0;
 		}
 		else if(ob==DenkiButton)
 		{
@@ -208,7 +209,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 			lab.setText("　　　　　　　　電気です");
 			lab2.setText("　　　　　　　　電気電子工学科");
 			lbl.setText("　　　　　　　     難易度★");
-			ck=2;
+			ck=0;
 		}
 		else if(ob==SeigyoButton)
 		{
@@ -217,7 +218,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 			lab.setText("　　　　　　　　制御です");
 			lab2.setText("　　　　　　　　電子制御工学科");
 			lbl.setText("　　　　　　　     難易度★");
-			ck=3;
+			ck=0;
 		}
 		else if(ob==JouhouButton)
 		{
@@ -235,7 +236,7 @@ public class DepartmentFrame extends JFrame implements MouseListener{
 			lab.setText("　　　　　　　　都市環です");
 			lab2.setText("　　　　　　　　都市環境デザイン工学科");
 			lbl.setText("　　　　　　　     難易度★");
-			ck=5;
+			ck=0;
 		}
 		else if(ob==KakuteiButton)
 		{

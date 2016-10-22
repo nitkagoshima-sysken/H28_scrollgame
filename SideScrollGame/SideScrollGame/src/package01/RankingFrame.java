@@ -40,7 +40,6 @@ public class RankingFrame extends JFrame {
 
 
 
-
 	/**
 	 * Launch the application.
 	 */
@@ -73,7 +72,8 @@ public class RankingFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		setResizable(false);
+		
 		JLabel label_1 = new JLabel("一位");
 		label_1.setBounds(52, 130, 128, 42);
 		contentPane.add(label_1);

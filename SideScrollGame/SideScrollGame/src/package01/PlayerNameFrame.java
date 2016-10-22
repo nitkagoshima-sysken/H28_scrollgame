@@ -55,7 +55,8 @@ public class PlayerNameFrame extends JFrame implements ActionListener{
 		lblNewLabel.setFont(new Font("HGS?n?p?p?????", Font.PLAIN, 16));
 		lblNewLabel.setBounds(150, 140, 1000, 20);
 		contentPane.add(lblNewLabel);
-
+		setResizable(false);
+		
 		textField = new JTextField();
 		textField.setFont(new Font("MS UI Gothic", Font.PLAIN, 28));
 		textField.setBounds(240, 170, 500, 50);

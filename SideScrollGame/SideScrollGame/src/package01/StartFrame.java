@@ -1,5 +1,6 @@
 package package01;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -51,34 +52,35 @@ public class StartFrame extends JFrame implements ActionListener{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 		//初期設定終
 
 		//ラベル
-		JLabel lblNewLabel = new JLabel("\u30B2\u30FC\u30E0\u30BF\u30A4\u30C8\u30EB\uFF08\u4EEE\uFF09");
+		JLabel lblNewLabel = new JLabel("The　高専");
 		lblNewLabel.setForeground(SystemColor.textHighlight);
 		lblNewLabel.setEnabled(true);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setVerticalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("HGP�n�p�p�޼��UB", Font.PLAIN, 60));
-		lblNewLabel.setBounds(332, 254, 600, 80);
+		lblNewLabel.setFont(new Font("ＭＳ Ｐ明朝", Font.BOLD, 82));
+		lblNewLabel.setBounds(340, 180, 600, 80);
 		contentPane.add(lblNewLabel);
 		//ラベル終
 
 		//スタートボタン
 		btnNewButton = new JButton("\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8");
-		btnNewButton.setFont(new Font("HGP�n�p�p�޼��UB", Font.PLAIN, 24));
-		btnNewButton.setBounds(332, 409,250, 28);
+		btnNewButton.setFont(new Font("HGP?n?p?p????UB", Font.PLAIN, 24));
+		btnNewButton.setBounds(332, 410,250, 28);
 		contentPane.add(btnNewButton);
 		btnNewButton.addActionListener(this);
 		//スタートボタン終
 
 		//ランキングボタン
 		btnNewButton_1 = new JButton("\u30E9\u30F3\u30AD\u30F3\u30B0");
-		btnNewButton_1.setFont(new Font("HGP�n�p�p�޼��UB", Font.PLAIN, 24));
-		btnNewButton_1.setBounds(752, 409, 180, 28);
+		btnNewButton_1.setFont(new Font("HGP?n?p?p????UB", Font.PLAIN, 24));
+		btnNewButton_1.setBounds(752, 410, 250, 28);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(this);
-		//ランキングボタン終
+	    //ランキングボタン終
 
 		//第2パネル設定
 		panel = new JPanel();
@@ -87,10 +89,24 @@ public class StartFrame extends JFrame implements ActionListener{
 		//第2パネル設定終
 
 		//説明用ラベル
-		lblNewLabel_1 = new JLabel("説明");
-		lblNewLabel_1.setSize(100, 100);
+		lblNewLabel_1 = new JLabel("<HTML>\r\nこのゲームは、高専入学から卒業までを体験していただく<br>スクロールアクションゲームです!<br>\r\n最後のボスには、あの偉い方も登場しちゃいます#<br>\r\n是非、留年せずにストレート卒業を目指しちゃってください!!!\r\n</HTML>");
+		lblNewLabel_1.setSize(1200, 500);
 		lblNewLabel_1.setLocation(100, 100);
+		lblNewLabel_1.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 40));
+		contentPane.add(lblNewLabel, BorderLayout.CENTER);
 		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("THE COLLEGE FLOWING STORY");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Century", Font.PLAIN, 18));
+		lblNewLabel_2.setBounds(480, 270, 320, 20);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("～エスカレータ（下り）～");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("HG行書体", Font.PLAIN, 28));
+		lblNewLabel_3.setBounds(440, 300, 400, 65);
+		contentPane.add(lblNewLabel_3);
 		//説明用ラベル終
 	}
 	public void actionPerformed(ActionEvent e)
