@@ -12,6 +12,10 @@ import javax.swing.SwingConstants;
 
 public class OutlineFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -35,15 +39,15 @@ public class OutlineFrame extends JFrame {
 	 */
 	public OutlineFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1280, 720);
+		setBounds(0, 0, 1280, 720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel = new JLabel("<HTML>\r\nこのゲームは、高専入学から卒業までを体験していただくスクロールアクションゲームです!<br>\r\n最後のボスには、あの偉い方も登場しちゃいます#<br>\r\n是非、留年せずにストレート卒業を目指しちゃってください!!!\r\n</HTML>");
+		JLabel lblNewLabel = new JLabel("<HTML>\r\nこのゲームは、高専入学から卒業までを体験していただくスクロールアクションゲームです!<br>\r\n最後のボスには、あの偉い方も登場しちゃいます(＞▽＜#)!<br>\r\n是非、留年せずにストレート卒業を目指しちゃってください!!!\r\n</HTML>");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 22));
+		lblNewLabel.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 28));
 		contentPane.add(lblNewLabel, BorderLayout.CENTER);
 	}
 

@@ -45,7 +45,7 @@ public class PlayerNameFrame extends JFrame implements ActionListener{
 	public PlayerNameFrame() {
 		setTitle("\u30B2\u30FC\u30E0\u30BF\u30A4\u30C8\u30EB\uFF08\u4EEE\uFF09\u3000\uFF5E\u30D7\u30EC\u30A4\u30E4\u30FC\u60C5\u5831\u5165\u529B\uFF5E");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1280, 720);
+		setBounds(0, 0, 1280, 720);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
